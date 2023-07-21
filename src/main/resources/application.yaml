@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      username: groupsixcapstone
+      password: group6capstone
+      host: localhost
+      port: 27017
+      database: AEMS
+      authentication-database: admin
+      uri: mongodb+srv://groupsixcapstone:group6capstone@AEMS.n9rir88.mongodb.net/?retryWrites=true&w=majority
