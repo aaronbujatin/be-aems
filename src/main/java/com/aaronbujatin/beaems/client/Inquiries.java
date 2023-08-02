@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
-@Document(collation = "user")
+@Document("inquiries")
 public class Inquiries {
 
     @Id
