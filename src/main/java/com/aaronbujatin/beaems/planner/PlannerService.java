@@ -28,7 +28,8 @@ public class PlannerService {
         Planner newPlanner = plannerRepository.findById(id).get();
         if(newPlanner != null) {
             newPlanner.setMessage(planner.getMessage());
-            newPlanner.setDateAndTime(planner.getDateAndTime());
+            newPlanner.setDate(planner.getDate());
+            newPlanner.setTime(planner.getTime());
             newPlanner.setLocation(planner.getLocation());
 
             return plannerRepository.save(newPlanner);
