@@ -24,7 +24,7 @@ public class InquiriesService {
 
             String emailContent = "Dear " + user.getBrideName() +" & " + user.getGroomName() + ",\n\n"
                     + "Thank you for your inquiry. We have received your details.\n"
-                    + "Your budget: " + user.getEstimatedBudget() + "\n\n"
+                    + "Your Selected package: " + user.getSelectedPackage() + "\n\n"
                     + "We will get back to you with more information soon.\n\n"
                     + "Best regards,\n"
                     + "Sweet Serenity Wedding Event";

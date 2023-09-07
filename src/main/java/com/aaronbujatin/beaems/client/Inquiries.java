@@ -19,7 +19,7 @@ public class Inquiries {
     private String groomName;
     private int guestNumber;
     private String receptionVenue;
-    private double estimatedBudget;
+    private String selectedPackage;
     private String email;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     private LocalDate startDate;
