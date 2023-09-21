@@ -1,6 +1,5 @@
 package com.aaronbujatin.beaems.user;
 
-import com.aaronbujatin.beaems.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
-    private final UserDetailsServiceImpl userDetailsService;
 
-    @PostMapping("/sign-in")
+    @PostMapping("signup")
     public ResponseEntity<User> saveUser(@RequestBody User user){
-        return new ResponseEntity<>(userDetailsService.saveUser(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
+
     }
 
 }
