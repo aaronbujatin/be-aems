@@ -10,7 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/bookings")
-@CrossOrigin("localhost:8100")
+@CrossOrigin(origins = "*")
 public class BookingController {
 
     private final BookingService bookingService;
@@ -28,6 +28,11 @@ public class BookingController {
     @GetMapping()
     public ResponseEntity<List<Booking>> getAllBooking(){
         return new ResponseEntity<>(bookingService.getAllBooking(), HttpStatus.OK);
+    }
+
+    @GetMapping("/organizer/{organizerName}")
+    public ResponseEntity<List<Booking>> getBookingByOrganizerName(@PathVariable String organizerName){
+        return new ResponseEntity<>(bookingService.getBookingByOrganizerName(organizerName), HttpStatus.OK);
     }
 
 
