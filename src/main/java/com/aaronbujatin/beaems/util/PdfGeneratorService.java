@@ -14,6 +14,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RequiredArgsConstructor
 @Service
@@ -26,11 +29,6 @@ public class PdfGeneratorService {
         Booking booking = bookingRepository.findById(id).get();
 
         if(booking != null) {
-
-
-
-
-
             try (PDDocument document = new PDDocument()) {
                 PDPage page = new PDPage();
                 document.addPage(page);
@@ -264,8 +262,10 @@ public class PdfGeneratorService {
                     contentStream.showText("Rodriguez, Rizal | Contact# 09212924651 | sweetserenity@gmail.com");
                     contentStream.endText();
                 }
-
-                document.save(booking.getGroomName() + "_" +booking.getBrideName() + "_" +"wedding_contract.pdf"); // Save the PDF
+                String filePath = "src\\main\\resources\\pdfs\\" + booking.getGroomName() + "_" +booking.getBrideName() + "_" +"wedding_contract.pdf";
+                File file = new File(filePath);
+                FileOutputStream outputStream = new FileOutputStream(file);
+                document.save(outputStream); // Save the PDF
             } catch (Exception e) {
                 e.printStackTrace();
             }
