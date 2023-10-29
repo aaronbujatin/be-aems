@@ -3,6 +3,7 @@ package com.aaronbujatin.beaems.guest;
 import com.google.zxing.WriterException;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,9 +29,10 @@ public class GuestController {
         return new ResponseEntity<>(guestService.getGuestById(id), HttpStatus.OK);
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Guest>> getAllGuestByStatus(@RequestParam String status){
-        return new ResponseEntity<>(guestService.getAllGuestByStatus(status), HttpStatus.OK);
+    @GetMapping("/filter")
+    public ResponseEntity<List<Guest>> getAllGuestByStatus(@RequestParam String eventName, @RequestParam String status){
+
+        return new ResponseEntity<>(guestService.getAllByEventNameAndStatus(eventName,status), HttpStatus.OK);
     }
 
     @GetMapping("/all")
@@ -39,9 +41,20 @@ public class GuestController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Guest>> searchGuests(@RequestParam String query) {
-        List<Guest> searchResults = guestService.searchGuestsByFirstNameOrLastName(query);
+    public ResponseEntity<List<Guest>> searchGuests(@RequestParam String eventName, @RequestParam String searchQuery) {
+        List<Guest> searchResults = guestService.searchGuestsByFirstNameOrLastName(eventName,searchQuery);
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
+    }
+
+    @GetMapping("/event")
+    public ResponseEntity<List<Guest>> getAllByEventNameReference(@RequestParam String eventName){
+        List<Guest> guestsByEventNameReferenceResult = guestService.getAllByEventNameReference(eventName);
+        return new ResponseEntity<>(guestsByEventNameReferenceResult, HttpStatus.OK);
+    }
+
+    @GetMapping("/confirm-account")
+    public ResponseEntity<String> confirmAttendance(@RequestParam("token") String confirmationToken){
+        return new ResponseEntity<>(guestService.confirmEmail(confirmationToken), HttpStatus.OK);
     }
 
 
