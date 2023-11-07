@@ -1,5 +1,6 @@
 package com.aaronbujatin.beaems.booking;
 
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping
-    public ResponseEntity<Booking> save(@RequestBody Booking booking){
+    public ResponseEntity<Booking> save(@RequestBody Booking booking) throws MessagingException {
         return new ResponseEntity<>(bookingService.save(booking), HttpStatus.CREATED);
     }
 
