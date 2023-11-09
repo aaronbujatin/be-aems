@@ -68,7 +68,7 @@ public class BookingService {
         String formattedDateDeadline = meetingDeadline.format(formatter);
 
         helper.setTo(booking.getEmail());
-        helper.setSubject("Your Guest QrCode");
+        helper.setSubject("Your Reservation");
         String emailText = "Dear " + booking.getClientName() + ",\n\n" +
                 "We hope this message finds you well and that you are excited about your upcoming wedding event! We understand that planning a wedding can be a busy and exciting time, but there are some important details that require your immediate attention to ensure the success of your event.\n\n" +
                 "As your dedicated event organizer, we have been working diligently to make sure your wedding day is nothing short of perfect. To help us make this dream a reality, we kindly request that you schedule a meeting with us within the next month.\n\n" +
