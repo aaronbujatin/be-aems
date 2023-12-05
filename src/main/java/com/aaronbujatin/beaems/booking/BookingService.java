@@ -27,6 +27,13 @@ public class BookingService {
     private final RegistrationFeeRepository registrationPaymentRepository;
 
     public Booking save(Booking booking) throws MessagingException {
+
+        boolean isBookingEventNameAlreadyExistSabiNiJephineson = bookingRepository.existsByEventName(booking.getEventName());
+
+        if(isBookingEventNameAlreadyExistSabiNiJephineson){
+            throw new IllegalStateException("Event name already exist");
+        }
+
         booking.setBookingDate(LocalDate.now());
         booking.setBookingStatus("PENDING");
         booking.setOrganizerName("PENDING");
@@ -84,10 +91,6 @@ public class BookingService {
 
                 "Sweet Serenity Wedding Event";
         helper.setText(emailText);
-
-
-        // Attach the QR code image to the email
-
 
         emailSender.send(message);
     }
